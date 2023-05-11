@@ -1,0 +1,220 @@
+.side-drawer {
+  // border: 0.2rem solid rgb(59, 59, 59);
+  padding: 0.8rem 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10%;
+
+  background-image: linear-gradient(
+    to right bottom,
+    rgb(155, 155, 232),
+    rgb(235, 209, 213)
+  );
+
+  .search-users-button {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(235, 209, 213, 0.632),
+      rgba(155, 155, 232, 0.462)
+    );
+    background-color: rgb(255, 255, 255);
+    border: 0.01rem solid rgb(129, 144, 172);
+    padding: 0.25rem 0.32rem;
+    border-radius: 0.4rem;
+    margin-right: 6rem;
+    // transition: after 1s;
+    position: relative;
+    opacity: 0.8;
+
+    &:hover {
+      padding-bottom: 0.35rem;
+      box-shadow: 0.3rem 0.4rem 1rem rgba(0, 0, 0, 0.219);
+      opacity: 1;
+      margin: 0;
+
+      &::after {
+        content: "Search Users";
+      }
+    }
+  }
+
+  .search-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(0.08rem);
+
+    display: flex; // to stretch it
+
+    background-color: rgba(0, 0, 0, 0.599);
+    z-index: 10;
+    .search-bar {
+      min-width: 20rem;
+      background-color: rgb(255, 255, 255);
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(117, 117, 248, 0.299),
+        rgba(243, 154, 167, 0.348)
+      );
+      padding: 1rem;
+
+      position: relative;
+
+      h1 {
+        display: none;
+        padding: 0.5rem;
+        border-bottom: 0.01rem solid black;
+      }
+
+      input {
+        background: none;
+        padding: 0.5rem;
+        margin-top: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.581);
+        display: block;
+        width: 74%;
+        border: 0.01rem solid rgba(0, 0, 0, 0.797);
+
+        &::placeholder {
+          color: rgb(38, 38, 38);
+        }
+      }
+
+      button {
+        position: absolute;
+        left: 14.35rem;
+        top: 5.1rem;
+        width: 2.8rem;
+        height: 2.1rem;
+        border: 0.08rem solid rgba(0, 0, 0, 0.811);
+
+        background: none;
+
+        background-image: linear-gradient(
+          to right bottom,
+          rgba(17, 17, 227, 0.722),
+          rgba(189, 13, 39, 0.618)
+        );
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+
+        cursor: pointer;
+      }
+    }
+  }
+
+  .title {
+    // font-size: 12rem;
+    // font-weight: 600;
+    color: black;
+    font-weight: 800;
+    letter-spacing: 0.16rem;
+  }
+
+  .options {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+
+    button {
+      opacity: 0.8;
+      padding: 0.35rem 0.45rem 0.25rem 0.45rem;
+      // padding-top: 0.37rem;
+      cursor: pointer;
+      border: 0.01rem solid transparent;
+      background: none;
+
+      &:hover {
+        // border: 1px solid green;
+        background-image: linear-gradient(
+          to right bottom,
+          rgba(235, 209, 213, 0.632),
+          rgba(155, 155, 232, 0.462)
+        );
+        background-color: rgb(255, 255, 255);
+        // border: 0.01rem solid rgb(129, 144, 172);
+        border-radius: 50%;
+
+        box-shadow: 0.3rem 0.4rem 0.8rem rgba(0, 0, 0, 0.092);
+
+        opacity: 1;
+      }
+    }
+
+    // applying to all children
+    // .options > * {
+    //   }
+    // }
+  }
+}
+.modal-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // border: 3px solid red;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(0.08rem);
+
+  background-color: rgba(0, 0, 0, 0.555);
+
+  .modal {
+    position: relative;
+
+    background-color: rgb(227, 227, 227);
+    // border: 0.2rem solid red;
+    border-radius: 1rem;
+    padding: 2rem;
+    img {
+      height: 3rem;
+      width: 3rem;
+      border-radius: 50%;
+    }
+  }
+
+  .modal-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    padding: 0.6rem;
+  }
+
+  .modal-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+// for both search and dropdown close buttons
+.close {
+  // position: absolute;
+  // right: 1rem;
+  // top: 0.5rem;
+  text-align: end;
+  margin-top: 0.4rem;
+  .close-icon {
+    color: rgb(167, 54, 54);
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}

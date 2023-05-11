@@ -1,0 +1,21 @@
+.participants-list {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    background-color: white;
+    cursor: pointer;
+    padding: 0.2rem;
+
+    font-size: 0.7rem;
+
+    border: 0.01rem solid rgb(238, 149, 164);
+    border-radius: 0.5rem;
+
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(255, 0, 0, 0.638),
+      rgba(174, 42, 170, 0.385)
+    );
+  }
+}

@@ -1,0 +1,86 @@
+.my-contacts-area {
+  min-width: 30%; // rest width for chatbox
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(243, 154, 167, 0.348),
+    rgba(117, 117, 248, 0.299)
+  );
+  // padding: 0.8rem;
+  overflow: hidden;
+  border-radius: 0.8rem;
+
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(29, 29, 241, 0.299),
+      rgba(202, 116, 239, 0.238)
+    );
+    padding: 0.8rem;
+    border-bottom: 0.08rem solid rgba(54, 7, 105, 0.614);
+
+    h2 {
+      font-size: 1.4rem;
+      margin-left: 0.7rem;
+      letter-spacing: 0.05rem;
+    }
+
+    .new-group-chat-button {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem;
+      // font-weight: 400;
+
+      background-color: white;
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(117, 117, 248, 0.299),
+        rgba(243, 154, 167, 0.348)
+      );
+
+      border-radius: 0.3rem;
+      border: 0.01rem solid rgba(45, 45, 155, 0.415);
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0.3rem 0.4rem 0.8rem rgba(0, 0, 0, 0.219);
+        &::before {
+          content: "New Group Chat";
+        }
+      }
+    }
+  }
+
+  .existing-contacts-chats {
+    padding: 0.03rem;
+
+    .existing-contact-chat {
+      border: 0.01rem solid rgba(36, 5, 93, 0.27);
+      border-top: none;
+      // &:not(:last-child) {
+      //   // border-bottom: none;
+      // }
+
+      padding: 1.3rem 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.227);
+      }
+    }
+    .active {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(119, 119, 227, 0.299),
+        rgba(140, 73, 212, 0.238)
+      );
+      transform: translateX(0rem);
+      border-left: 0.5rem solid rgba(47, 12, 122, 0.707);
+
+      // background-color: rgba(39, 39, 39, 0.129);
+    }
+  }
+}

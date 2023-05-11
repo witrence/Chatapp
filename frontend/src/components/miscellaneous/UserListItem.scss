@@ -1,0 +1,54 @@
+.user-list-item {
+  background-color: white;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(216, 110, 216, 0.473),
+    rgba(58, 62, 105, 0.411)
+  );
+
+  &:hover {
+    background-color: rgb(171, 206, 249);
+  }
+}
+
+.large {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  &:last-child {
+    margin: 0;
+  }
+  img {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+  }
+  .searched-user {
+    // width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+}
+
+.small {
+  padding: 0.1rem 0.5rem;
+  margin-bottom: 0.6rem;
+  // border: 1px solid red;
+  border-radius: 1rem;
+
+  .searched-user {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  img {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+}

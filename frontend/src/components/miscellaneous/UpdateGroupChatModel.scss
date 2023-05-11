@@ -1,0 +1,148 @@
+.group-chat-modal-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(235, 209, 213, 0.632),
+    rgba(155, 155, 232, 0.462)
+  );
+  background-color: rgba(255, 255, 255, 0.844);
+  border: 0.01rem solid rgb(129, 144, 172);
+  padding: 0.18rem 0.3rem;
+  border-radius: 0.4rem;
+
+  &:hover {
+    &::before {
+      content: "Edit Group";
+      font-weight: 600;
+    }
+  }
+}
+
+.group-modal-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // border: 3px solid red;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(0.08rem);
+
+  background-color: rgba(0, 0, 0, 0.623);
+
+  .group-modal {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.73);
+    border-radius: 1rem;
+    padding: 1.8rem;
+
+    .group-modal-title {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+      padding: 0.6rem;
+    }
+
+    .group-modal-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+
+      .group-participants-box {
+        border: 0.2rem solid grey;
+        align-self: stretch;
+
+        p {
+          font-weight: 600;
+          margin-bottom: 0.3rem;
+          padding: 0.4rem;
+          border-bottom: 0.01rem solid rgb(92, 92, 92);
+        }
+        .group-participants {
+          display: flex;
+          //   border: 2px solid red;
+          flex-direction: column;
+          gap: 0.3rem;
+          padding: 0.1rem;
+          height: 8rem;
+          overflow-y: scroll;
+        }
+      }
+
+      .group-add-users {
+        display: flex;
+        gap: 0.4rem;
+        max-width: 18rem;
+        overflow-x: auto;
+      }
+    }
+    .group-update-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-self: center;
+
+      input {
+        // width: 100%;
+        background: none;
+        border: 0.01rem solid rgb(34, 7, 76);
+        padding: 0.3rem 0.4rem;
+        &::placeholder {
+          color: rgb(79, 79, 79);
+        }
+      }
+
+      button {
+        font-weight: 600;
+        border: 0.01rem solid black;
+        background: none;
+        height: 1.7rem;
+        padding: 0.2rem;
+        background-color: white;
+        background-image: linear-gradient(
+          to right bottom,
+          rgba(196, 67, 196, 0.641),
+          rgba(33, 39, 106, 0.411)
+        );
+      }
+    }
+
+    .modal-footer {
+      align-self: flex-end;
+      border: none;
+      background: none;
+      padding: 0.5rem;
+      border: 0.01rem solid rgba(83, 8, 83, 0.859);
+
+      background-color: white;
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(200, 54, 202, 0.641),
+        rgba(163, 14, 39, 0.645)
+      );
+    }
+  }
+}
+
+// for both search and dropdown close buttons
+.close {
+  position: absolute;
+  right: 1.2rem;
+  top: 0.6rem;
+  text-align: end;
+  margin-top: 0.4rem;
+  cursor: pointer;
+}

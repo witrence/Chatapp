@@ -1,0 +1,11 @@
+.chat-page {
+  // border: 2px solid red;
+  .chat-area {
+    height: 90vh;
+
+    display: flex;
+    gap: 0.4rem;
+    justify-content: space-between;
+    padding: 0.3rem;
+  }
+}

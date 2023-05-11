@@ -1,0 +1,21 @@
+.input-forms {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal {
+  span {
+    color: rgb(202, 20, 20);
+  }
+}
+
+.modal-info {
+  display: flex;
+  flex-direction: column;
+  button {
+    font-weight: 600;
+    padding: 0.4rem;
+    background-color: rgb(136, 250, 176);
+  }
+}

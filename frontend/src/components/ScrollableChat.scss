@@ -1,0 +1,56 @@
+.scrollable-chat {
+  height: 100%;
+  // overflow-y: scroll;
+  padding: 0.8rem;
+
+  // overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
+
+  .message {
+    // border: 1px solid red;
+    padding: 0.18rem 1.2rem 1rem 0.3rem;
+
+    border-radius: 0.5rem;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    max-width: 50%;
+    word-break: break-all;
+
+    position: relative;
+    .message-date {
+      color: rgb(32, 32, 32);
+      font-size: 0.65rem;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 0 0.1rem;
+      background-color: rgba(255, 255, 255, 0.089);
+    }
+  }
+  .send {
+    align-self: flex-end;
+    background-color: rgb(246, 186, 196);
+    // background-color: white;
+    // background-image: linear-gradient(
+    //   to right bottom,
+    //   rgba(84, 55, 137, 0.601),
+    //   rgba(255, 192, 203, 0.612)
+    // );
+    border: 0.1rem solid rgb(236, 204, 204);
+  }
+  .receive {
+    align-self: flex-start;
+    background-color: rgb(191, 189, 255);
+    border: 0.1rem solid rgb(233, 209, 255);
+  }
+}
+
+// hide scroll bar but without losing scrolling functionality
+// ::-webkit-scrollbar {
+//   display: none;
+// }
