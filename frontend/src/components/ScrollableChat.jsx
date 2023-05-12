@@ -72,7 +72,7 @@ const ScrollableChat = ({ messages }) => {
             {/* </span> */}
           </div>
         ))}
-      <div ref={messagesEndRef} />
+      <div ref={messagesEndRef} style={{ padding: ".3rem" }} />
     </div>
   );
 };

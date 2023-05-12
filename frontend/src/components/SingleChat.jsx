@@ -237,7 +237,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             {/* <button onClick={sendMessage}>Send</button>s */}
           </div>
         ) : (
-          <div>
+          <div className="no-chat-selected-view">
             Search new users or click on the existing user to start chatting
           </div>
         )}

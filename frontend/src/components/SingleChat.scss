@@ -3,6 +3,8 @@
   flex-direction: column;
   height: 100%;
 
+  position: relative;
+
   .chat-display-area {
     background-color: rgb(103, 103, 103);
     overflow: hidden;
@@ -11,6 +13,13 @@
     // padding: 0.5rem;
     display: flex;
     flex-direction: column;
+
+    background-color: rgba(229, 229, 229, 0.562);
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(243, 164, 186, 0.392),
+      rgba(105, 70, 220, 0.332)
+    );
   }
 
   .chat-nav-bar {
@@ -18,6 +27,7 @@
     align-items: center;
     justify-content: space-between;
     // flex-shrink: 0;
+    border-bottom: 0.01rem solid rgb(109, 109, 109);
 
     padding: 0.6rem 0.8rem;
     background-color: white;
@@ -106,4 +116,16 @@
       }
     }
   }
+}
+
+.no-chat-selected-view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 500;
 }
