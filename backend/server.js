@@ -9,6 +9,8 @@ const messageRoutes = require("./routes/messageRoutes");
 
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
+const path = require("path");
+
 // creating intance
 dotenv.config();
 connectDB();
@@ -18,9 +20,10 @@ const app = express();
 // accepting the json file from frontend
 app.use(express.json());
 
-app.get("/", (request, response) => {
-  response.send("API is running successfully");
-});
+// moved to below deployement in else part
+// app.get("/", (request, response) => {
+//   response.send("API is running successfully");
+// });
 
 // app.get("/api/chat", (req, res) => {
 //   res.send(chats);
@@ -36,6 +39,21 @@ app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
+// ************** DEPLOYEMENT CODE *******************
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
+  });
+} else {
+  app.get("/", (request, response) => {
+    response.send("API is running successfully");
+  });
+}
+
+// ************** DEPLOYEMENT CODE *******************
 app.use(notFound);
 app.use(errorHandler);
 
