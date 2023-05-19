@@ -1,15 +1,6 @@
-// .login {
-//   form {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 1rem;
-//   }
-//   input,
-//   button {
-//     padding: 0.6rem;
-//     width: 100%;
-//     display: block;
-//   }
-//   input {
-//   }
-// }
+.validation-error {
+  color: rgb(229, 9, 9);
+  font-size: 0.8rem;
+  transform: translateY(-0.3rem);
+  text-align: end;
+}

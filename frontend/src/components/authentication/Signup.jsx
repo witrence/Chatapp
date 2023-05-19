@@ -1,17 +1,31 @@
-import { useState } from "react";
+import "./Signup.scss";
+
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
 const Signup = (props) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+
+  // form validation
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  };
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+
   const [pic, setPic] = useState(null);
 
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
 
   const postPic = (pic) => {
     // if pic does not exist or chosen
@@ -44,21 +58,18 @@ const Signup = (props) => {
       return;
     }
   };
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    // cheking if all fields are filled
-    if (!name || !email || !password || !confirmPassword) {
-      console.log("Please fill all the fields before signng up !");
-      return;
-    }
-    // is passwords do not match
-    if (password !== confirmPassword) {
-      console.log("Passwords do not match !!!!");
-      return;
-    }
 
+  const handleCanSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues));
+  };
+
+  const submitHandler = async () => {
     // sending data to database
     try {
+      const name = formValues.name,
+        email = formValues.email,
+        password = formValues.password;
       const config = {
         headers: {
           "Content-type": "application/json",
@@ -75,16 +86,55 @@ const Signup = (props) => {
         config
       );
 
-      console.log("REGISTRATION SUCCESSFULLY DONE !!!");
+      // console.log("REGISTRATION SUCCESSFULLY DONE !!!");
       localStorage.setItem("userInfo", JSON.stringify(data));
 
       navigate("/chats");
       /****************************** */
     } catch (err) {
-      console.log("Some error occurred while registering !!! :(");
+      // console.log("Some error occurred while registering !!! :(");
       console.log(err.response.data.message);
     }
   };
+
+  useEffect(() => {
+    if (
+      Object.keys(formErrors).length === 0 &&
+      formValues.name !== "" &&
+      formValues.email !== "" &&
+      formValues.password !== "" &&
+      formValues.confirmpassword !== ""
+    ) {
+      submitHandler();
+    }
+  }, [formErrors]);
+
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!values.name) {
+      errors.name = "Name is required";
+    }
+    if (!values.email) {
+      errors.email = "Email is required!";
+    } else if (!regex.test(values.email)) {
+      errors.email = "Not a valid email format!";
+    }
+    if (!values.password) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 6) {
+      errors.password = "Atleast 6 characters required!";
+    }
+
+    if (values.confirmpassword !== values.password) {
+      errors.confirmpassword = "Passwords do not match";
+    }
+
+    return errors;
+  };
+
+  // const signUpAsGuest = () => {};
 
   const changePasswordVisibility = (e) => {
     e.preventDefault();
@@ -92,23 +142,24 @@ const Signup = (props) => {
   };
   return (
     <div className={props.className}>
-      {/* <span className="title">Signup Here</span> */}
-      <form>
+      <form onSubmit={handleCanSubmit}>
         <label>Name</label>
         <input
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-          type="name"
+          name="name"
+          type="text"
+          onChange={handleChange}
           placeholder="Enter your name"
         />
+        <p className="validation-error">{formErrors.name}</p>
 
         <label>Email</label>
         <input
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
+          name="email"
+          onChange={handleChange}
+          type="text"
           placeholder="Enter your email"
         />
+        <p className="validation-error">{formErrors.email}</p>
 
         <label>Upload your profile picture</label>
         <input
@@ -117,22 +168,39 @@ const Signup = (props) => {
           accept="image/*"
         />
 
-        <label>Password</label>
+        <div className="password-label">
+          <label>Password</label>
+          <span
+            title="Show/Hide Password"
+            onClick={changePasswordVisibility}
+            className="material-icons-outlined show-hide-password"
+          >
+            {passwordVisibility ? "visibility_on" : "visibility_off"}
+          </span>
+        </div>
         <input
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          onChange={handleChange}
           type={passwordVisibility ? "text" : "password"}
           placeholder="Enter your password"
         />
+        <p className="validation-error">{formErrors.password}</p>
 
         <label>Confirm Password</label>
         <input
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          name="confirmpassword"
+          onChange={handleChange}
           type={passwordVisibility ? "text" : "password"}
-          placeholder="confirm password"
+          placeholder="Confirm password"
         />
-        <button onClick={changePasswordVisibility}>Show/Hide Password</button>
+        <p className="validation-error">{formErrors.confirmpassword}</p>
+        {/* <button onClick={changePasswordVisibility}>
+
+        </button> */}
+
         {/* ************************************** */}
-        <button onClick={submitHandler}>Sign Up</button>
+        <button onClick={handleCanSubmit}>Sign Up</button>
+        {/* <button onClick={signUpAsGuest}>Sign Up as Guest</button> */}
       </form>
     </div>
   );

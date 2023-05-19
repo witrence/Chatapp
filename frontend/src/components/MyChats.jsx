@@ -11,29 +11,28 @@ const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
 
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-  const [currentChat, setCurrentChat] = useState(); // temporar state to update selectedChat
+  const [currentChat, setCurrentChat] = useState(); // temporary state to update selectedChat
 
   const [createGroupChat, setCreateGroupChat] = useState(false);
 
-  const openCloseHandler = () => {
-    setCreateGroupChat(!createGroupChat);
-  };
-
+  // console.log("Current Chat previoly");
+  // console.log(selectedChat);
+  // console.log(currentChat);
   // for selecting the current chat
   // const selectChat = (chat) => {
   const setChatHandler = (chat) => {
     setCurrentChat(chat);
-    console.log("SENDING chats from mychats");
-    console.log(chats);
   };
+
   useEffect(() => {
     setSelectedChat(currentChat);
-    if (currentChat) console.log(currentChat);
+    // if (currentChat) {
+    //   console.log("PRINTING CURRENT CHAT +----*********");
+    //   // console.log(chat);
+    //   console.log(selectedChat);
+    // }
+    // setCurrentChat();
   }, [currentChat]);
-
-  const groupChatHandler = () => {
-    setCreateGroupChat(true);
-  };
 
   const fetchChats = async () => {
     try {
@@ -54,6 +53,14 @@ const MyChats = ({ fetchAgain }) => {
     fetchChats();
   }, [fetchAgain]);
 
+  const openCloseHandler = () => {
+    setCreateGroupChat(!createGroupChat);
+  };
+
+  const groupChatHandler = () => {
+    setCreateGroupChat(true);
+  };
+
   return (
     <div className="my-contacts-area">
       {/* ****************** CONTACTS NAVIGATION BAR ******************** */}
@@ -65,7 +72,7 @@ const MyChats = ({ fetchAgain }) => {
           onClick={groupChatHandler}
         >
           {/* <p>New Group Chat</p> */}
-          <span class="material-icons-outlined">person_add</span>
+          <span className="material-icons-outlined">person_add</span>
         </button>
         {createGroupChat && (
           <GroupChatModel openCloseHandler={openCloseHandler} />
@@ -77,7 +84,9 @@ const MyChats = ({ fetchAgain }) => {
           chats.map((chat) => (
             <div
               className={`existing-contact-chat ${
-                selectedChat === chat ? "active" : "green"
+                (selectedChat && selectedChat._id) === chat._id
+                  ? "active"
+                  : "green"
               }`}
               onClick={() => setChatHandler(chat)}
               key={chat._id}

@@ -116,7 +116,7 @@
   }
 
   .title {
-    // font-size: 12rem;
+    // font-size: 0.1rem;
     // font-weight: 600;
     color: black;
     font-weight: 800;
@@ -127,6 +127,42 @@
     display: flex;
     gap: 0.6rem;
     align-items: center;
+    position: relative;
+
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      left: 1.7rem;
+      background-color: rgb(232, 13, 13);
+      font-size: 0.7rem;
+      padding: 0.1rem 0.25rem;
+      color: white;
+      border-radius: 50%;
+    }
+
+    .notification-dropdown {
+      position: absolute;
+      top: 2.4rem;
+      right: 7.5rem;
+      z-index: 20;
+      border: 0.05rem solid black;
+      // border-radius: 0.2rem;
+      background-color: rgba(255, 255, 255, 0.812);
+      box-shadow: 0.3rem 0.4rem 1rem rgba(0, 0, 0, 0.286);
+
+      .notification {
+        cursor: pointer;
+        padding: 1rem 0.6rem;
+        border-bottom: 0.01rem solid black;
+        &:last-child {
+          border: 0;
+        }
+        width: 18rem;
+        &:hover {
+          background-color: rgb(206, 202, 202);
+        }
+      }
+    }
 
     button {
       opacity: 0.8;

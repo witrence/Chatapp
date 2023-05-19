@@ -15,7 +15,13 @@ let socket, selectedChatCompare;
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const { user, selectedChat, setSelectedChat } = ChatState();
+  const {
+    user,
+    selectedChat,
+    setSelectedChat,
+    notifications,
+    setNotifications,
+  } = ChatState();
   const [event, setEvent] = useState("");
 
   const [contactPic, setContactPic] = useState(null);
@@ -28,6 +34,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   // console.log("printing seleCHAT in singlechat comp");
   // console.log(selectedChat);
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", user);
+    socket.on("connected", () => setSocketConnected(true));
+    socket.on("typing", () => setIsTyping(true));
+    socket.on("stop typing", () => setIsTyping(false));
+  }, []);
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -50,14 +64,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       console.log("Failed to load the messages !!");
     }
   };
-
-  useEffect(() => {
-    socket = io(ENDPOINT);
-    socket.emit("setup", user);
-    socket.on("connected", () => setSocketConnected(true));
-    socket.on("typing", () => setIsTyping(true));
-    socket.on("stop typing", () => setIsTyping(false));
-  }, []);
 
   useEffect(() => {
     fetchMessages();
@@ -101,6 +107,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
         socket.emit("new message", data);
         setMessages([...messages, data]);
+        setFetchAgain(!fetchAgain);
+        // setSelectedChat(currC);
+        // console.log("Cheking selcteddd ACCHAT");
+        // console.log(selectedChat);
       } catch (err) {
         console.log("Failed to send a message");
       }
@@ -147,9 +157,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         selectedChatCompare._id !== newMessageReceived.chat._id
       ) {
         // give notification only
-        return;
+        if (!notifications.includes(newMessageReceived)) {
+          setNotifications([newMessageReceived, ...notifications]);
+          setFetchAgain(!fetchAgain);
+        }
+        // return;
       } else {
         setMessages([...messages, newMessageReceived]);
+        setFetchAgain(!fetchAgain);
       }
     });
   });

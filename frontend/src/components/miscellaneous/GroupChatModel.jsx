@@ -4,7 +4,7 @@ import { ChatState } from "../../contexts/ChatProvider";
 import "./GroupChatModel.scss";
 import "../miscellaneous/SideDrawer.scss";
 
-import React, { useState, useEffect, useTransition } from "react";
+import React, { useState, useEffect } from "react";
 import UserListItem from "./UserListItem";
 import UserBadgeItem from "./UserBadgeItem";
 
@@ -30,7 +30,7 @@ const GroupChatModel = (props) => {
         };
 
         const { data } = await axios.get(`/api/user?search=${search}`, config);
-        // console.log(data);
+
         setSearchResult(data);
       } catch (err) {
         console.log("Failed to load the Search Results !!");
@@ -104,7 +104,7 @@ const GroupChatModel = (props) => {
       <div className="modal-overlay">
         <div className="modal">
           <div className="close" onClick={props.openCloseHandler}>
-            <span class="material-icons-outlined">cancel</span>
+            <span className="material-icons-outlined">cancel</span>
           </div>
           <h1 className="modal-title">Create Group Chat</h1>
           <div className="modal-info">

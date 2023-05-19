@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon backend/server.js"
+    "start": "nodemon backend/server.js",
+    "eject": "react-scripts eject"
   },
   "author": "Kapil",
   "license": "ISC",

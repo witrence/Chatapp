@@ -9,6 +9,9 @@ const ChatProvider = ({ children }) => {
   const [selectedChat, setSelectedChat] = useState();
   const [chats, setChats] = useState([]);
 
+  //
+  const [notifications, setNotifications] = useState([]);
+
   const navigate = useNavigate();
   useEffect(() => {
     // getting the current user credentials from the local storage
@@ -29,6 +32,8 @@ const ChatProvider = ({ children }) => {
         setSelectedChat,
         chats,
         setChats,
+        notifications,
+        setNotifications,
       }}
     >
       {children}
