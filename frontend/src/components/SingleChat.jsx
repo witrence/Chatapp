@@ -10,7 +10,7 @@ import io from "socket.io-client";
 
 // const ENDPOINT = "http://localhost:5000";
 // deployment address
-const ENDPOINT = "https://witrence.github.io/Chatapp/";
+const ENDPOINT = "https://sprightly-smakager-180666.netlify.app/";
 
 let socket, selectedChatCompare;
 
