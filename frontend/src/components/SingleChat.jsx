@@ -8,7 +8,9 @@ import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5000";
+// const ENDPOINT = "http://localhost:5000";
+// deployment address
+const ENDPOINT = "https://witrence.github.io/Chatapp/";
 
 let socket, selectedChatCompare;
 
