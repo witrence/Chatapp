@@ -21,9 +21,9 @@ const app = express();
 app.use(express.json());
 
 // moved to below deployement in else part
-// app.get("/", (request, response) => {
-//   response.send("API is running successfully");
-// });
+app.get("/", (request, response) => {
+  response.send("API is running successfully");
+});
 
 // app.get("/api/chat", (req, res) => {
 //   res.send(chats);
@@ -40,24 +40,25 @@ app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
 // ************** DEPLOYEMENT CODE *******************
-const __dirname1 = path.resolve();
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+// const __dirname1 = path.resolve();
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname1, "/frontend/build")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
-  });
-} else {
-  app.get("/", (request, response) => {
-    response.send("API is running successfully");
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
+//   });
+// } else {
+//   app.get("/", (request, response) => {
+//     response.send("API is running successfully");
+//   });
+// }
 
 // ************** DEPLOYEMENT CODE *******************
 app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT;
+console.log(PORT);
 
 const server = app.listen(PORT, console.log(`Server started on port ${PORT}`));
 

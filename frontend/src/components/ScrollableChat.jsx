@@ -14,8 +14,8 @@ const ScrollableChat = ({ messages }) => {
 
   const messagesEndRef = useRef(null);
 
-  console.log("PRINTING messages from scrolllable");
-  console.log(messages);
+  // console.log("PRINTING messages from scrolllable");
+  // console.log(messages);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

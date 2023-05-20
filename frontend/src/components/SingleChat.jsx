@@ -8,9 +8,9 @@ import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 
-// const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "http://localhost:5000";
 // deployment address
-const ENDPOINT = "https://sprightly-smakager-180666.netlify.app/";
+// const ENDPOINT = "https://sprightly-smakager-180666.netlify.app/";
 
 let socket, selectedChatCompare;
 
