@@ -7,7 +7,8 @@ The deployed website sometimes doesn't work properly. Therefore, a video below t
 Website link also mentioned at the bottom.
 
 
-https://github.com/witrence/Chatapp/assets/48147336/f918df22-3715-4e87-92fd-abd9511069ed
+
+https://github.com/witrence/Chatapp/assets/48147336/d93446c4-1939-4872-a33b-598fd2aebd3a
 
 
 
